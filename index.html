@@ -1,0 +1,356 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balozi wa China Online Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .catalogue {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product h3 {
+            margin: 10px 0;
+        }
+        .product p {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .product input[type="checkbox"] {
+            margin-top: 10px;
+        }
+        #order-form {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #order-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        #order-form input, #order-form textarea, #order-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #selected-products {
+            margin-bottom: 20px;
+        }
+        #selected-products div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        #selected-products input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+        }
+        button {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #128C7E;
+        }
+        #preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        #preview-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+        }
+        #preview-content button {
+            margin-right: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Balozi wa China Online Order</h1>
+        <p>Browse our catalogue, select products, and fill out the form to place your order!</p>
+    </header>
+    
+    <section class="catalogue">
+        <div class="product">
+            <img src="camo_crossbody_bag.jpg" alt="Camo crossbody bag">
+            <h3>Camo crossbody bag</h3>
+            <p>Tsh 20000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Camo crossbody bag" data-price="20000">
+        </div>
+        
+        <div class="product">
+            <img src="transparent_rain_coat.jpg" alt="Transparent rain coat">
+            <h3>Transparent rain coat</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Transparent rain coat" data-price="15000">
+        </div>
+        
+        <div class="product">
+            <img src="watch_and_bracelet_gold.jpg" alt="Watch and bracelet gold">
+            <h3>Watch and bracelet gold</h3>
+            <p>Tsh 10000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Watch and bracelet gold" data-price="10000">
+        </div>
+        
+        <div class="product">
+            <img src="black_crossbody_bag.jpg" alt="Black crossbody bag">
+            <h3>Black crossbody bag</h3>
+            <p>Tsh 20000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Black crossbody bag" data-price="20000">
+        </div>
+        
+        <div class="product">
+            <img src="humidifier1.jpg" alt="Humidifier1">
+            <h3>Humidifier1</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Humidifier1" data-price="15000">
+        </div>
+        
+        <div class="product">
+            <img src="watch_and_bracelet_black.jpg" alt="Watch and bracelet black">
+            <h3>Watch and bracelet black</h3>
+            <p>Tsh 10000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Watch and bracelet black" data-price="10000">
+        </div>
+        
+        <div class="product">
+            <img src="black_rain_coat.jpg" alt="Black rain coat">
+            <h3>Black rain coat</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Black rain coat" data-price="15000">
+        </div>
+        
+        <div class="product">
+            <img src="humidifier2.jpg" alt="Humidifier2">
+            <h3>Humidifier2</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Humidifier2" data-price="15000">
+        </div>
+        
+        <div class="product">
+            <img src="hand_fan.jpg" alt="Hand fan">
+            <h3>Hand fan</h3>
+            <p>Tsh 10000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Hand fan" data-price="10000">
+        </div>
+        
+        <div class="product">
+            <img src="watch_and_bracelet_silver.jpg" alt="Watch and bracelet silver">
+            <h3>Watch and bracelet silver</h3>
+            <p>Tsh 10000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Watch and bracelet silver" data-price="10000">
+        </div>
+        
+        <div class="product">
+            <img src="korean_style_bag.jpg" alt="Korean style bag">
+            <h3>Korean style bag</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Korean style bag" data-price="15000">
+        </div>
+        
+        <div class="product">
+            <img src="black_bracelet.jpg" alt="Black bracelet">
+            <h3>Black bracelet</h3>
+            <p>Tsh 15000</p>
+            <input type="checkbox" class="product-checkbox" data-name="Black bracelet" data-price="15000">
+        </div>
+    </section>
+    
+    <section id="order-form">
+        <h2>Place Your Order</h2>
+        <div id="selected-products"></div>
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" required>
+        
+        <label for="whatsapp-number">WhatsApp Number:</label>
+        <input type="tel" id="whatsapp-number" required>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" required>
+        
+        <label>Prefer Delivery?</label>
+        <select id="delivery-preference" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        
+        <button type="button" id="preview-button">Preview Order</button>
+    </section>
+    
+    <div id="preview-modal">
+        <div id="preview-content">
+            <h2>Order Preview</h2>
+            <div id="preview-details"></div>
+            <button type="button" id="submit-button">Submit to WhatsApp</button>
+            <button type="button" id="edit-button">Edit</button>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; 2026 Balozi wa China Online Order. All rights reserved.
+    </footer>
+    
+    <script>
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        const selectedProductsDiv = document.getElementById('selected-products');
+        const previewButton = document.getElementById('preview-button');
+        const previewModal = document.getElementById('preview-modal');
+        const previewDetails = document.getElementById('preview-details');
+        const submitButton = document.getElementById('submit-button');
+        const editButton = document.getElementById('edit-button');
+        
+        let selectedProducts = [];
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const name = checkbox.dataset.name;
+                const price = checkbox.dataset.price;
+                if (checkbox.checked) {
+                    selectedProducts.push({ name, price, quantity: 1 });
+                } else {
+                    selectedProducts = selectedProducts.filter(p => p.name !== name);
+                }
+                updateSelectedProducts();
+            });
+        });
+        
+        function updateSelectedProducts() {
+            selectedProductsDiv.innerHTML = '<h3>Selected Products:</h3>';
+            selectedProducts.forEach(product => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    ${product.name} (Tsh ${product.price}) - Quantity: 
+                    <input type="number" min="1" value="\( {product.quantity}" class="quantity-input" data-name=" \){product.name}">
+                `;
+                selectedProductsDiv.appendChild(div);
+            });
+            
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const name = e.target.dataset.name;
+                    const product = selectedProducts.find(p => p.name === name);
+                    if (product) {
+                        product.quantity = parseInt(e.target.value) || 1;
+                    }
+                });
+            });
+        }
+        
+        previewButton.addEventListener('click', () => {
+            const customerName = document.getElementById('customer-name').value;
+            const whatsappNumber = document.getElementById('whatsapp-number').value;
+            const location = document.getElementById('location').value;
+            const delivery = document.getElementById('delivery-preference').value;
+            
+            if (!customerName || !whatsappNumber || !location || !delivery || selectedProducts.length === 0) {
+                alert('Please fill all fields and select at least one product.');
+                return;
+            }
+            
+            let previewHtml = `
+                <p><strong>Customer Name:</strong> ${customerName}</p>
+                <p><strong>WhatsApp Number:</strong> ${whatsappNumber}</p>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Prefer Delivery:</strong> ${delivery}</p>
+                <p><strong>Products:</strong></p>
+                <ul>
+            `;
+            let totalPrice = 0;
+            selectedProducts.forEach(product => {
+                const subtotal = product.quantity * parseInt(product.price);
+                totalPrice += subtotal;
+                previewHtml += `<li>${product.name} x ${product.quantity} (Tsh ${subtotal})</li>`;
+            });
+            previewHtml += `</ul><p><strong>Total Price:</strong> Tsh ${totalPrice}</p>`;
+            previewDetails.innerHTML = previewHtml;
+            
+            previewModal.style.display = 'flex';
+        });
+        
+        editButton.addEventListener('click', () => {
+            previewModal.style.display = 'none';
+        });
+        
+        submitButton.addEventListener('click', () => {
+            const customerName = document.getElementById('customer-name').value;
+            const whatsappNumber = document.getElementById('whatsapp-number').value;
+            const location = document.getElementById('location').value;
+            const delivery = document.getElementById('delivery-preference').value;
+            
+            let message = `Order Details:\nCustomer Name: ${customerName}\nWhatsApp Number: ${whatsappNumber}\nLocation: ${location}\nPrefer Delivery: ${delivery}\nProducts:\n`;
+            let totalPrice = 0;
+            selectedProducts.forEach(product => {
+                const subtotal = product.quantity * parseInt(product.price);
+                totalPrice += subtotal;
+                message += `- ${product.name} x ${product.quantity} (Tsh ${subtotal})\n`;
+            });
+            message += `Total Price: Tsh ${totalPrice}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/255673251645?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+            
+            previewModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
